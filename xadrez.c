@@ -1,51 +1,70 @@
 #include <stdio.h>
 
-void bispo(){
+void bispo(int n){
     /* 
         Movimenta o bispo 5 casas na diagonal para direita/cima.
         Contando com a posição atual da peça.
         O movimento do bispo foi feito andando uma casa para direita e depois uma casa para cima.
         Terminando com 5 casas na diagonal.
     */
-    for (int x = 0; x < 5; x++)
-    {
-        //Imprime o movimento para direita e para cima, até que o valor de x chegue a 5.
-        printf("Mover para direita\n");
-        printf("Mover para cima\n");
-        
+   
+    if(n > 0){
+        for (int y = 0; y < 1; y++)
+        {
+            //Imprime o movimento para direita e para cima, até que o valor de x chegue a 5.
+            printf("Mover para cima\n");
+            for (int x = 0; x < 1; x++)
+            {
+                printf("Mover para direita\n");
+            }
+            
+        }
+
+        bispo(n-1);
     }
 }
 
-void torre(){
+void torre(int n){
     /* 
         Movimenta a torre 5 casas para cima.
         Contando com a posição atual da peça.
     */
 
-    int cont = 0;
-    while (cont <5)
-    {
+    if(n > 0){
         //Imprime o movimento para cima, até que o contador chegue a 5.
         printf("Mover para cima\n");
-        cont++;
+        torre(n-1);
     }
+    
+    
     
     
 }
 
-void rainha(){
+void rainha(int n){
     /* 
         Movimenta a rainha 8 casas para a esquerda, saindo do lado direito do tabuleiro para o esquerdo.
         Contando com a posição atual da peça.
     */
-    int cont = 0;
-    do
-    {
+    if(n > 0){
         //Imprime o movimento para esquerda, até que o contador chegue a 8.
         printf("Mover para esquerda\n");
-        cont++;
-    } while (cont < 8);
+        rainha(n-1);
+    } 
     
+}
+
+void cavalo(){
+    int cont = 0;
+    for(int i = 0; i < 1; i++){
+        while (cont<2)
+        {
+         printf("Mover para baixo\n");
+         printf("\n"); 
+         cont++;
+        }
+        printf("Mover para esquerda\n");
+    }
 }
 
 int main() {
@@ -58,19 +77,23 @@ int main() {
     printf("1 - Bispo\n");
     printf("2 - Torre\n");
     printf("3 - Rainha\n");
+    printf("4 - Cavalo\n");
     printf("0 - Sair\n");
     scanf("%d", &opcao);
 
     //Chama a função referente a peça escolhida.
     switch (opcao) {
         case 1:
-            bispo();
+            bispo(5);
             break;
         case 2:
-            torre();
+            torre(5);
             break;
         case 3:
-            rainha();
+            rainha(8);
+            break;
+        case 4:
+            cavalo();
             break;
         case 0:
             break;
